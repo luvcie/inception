@@ -1,27 +1,32 @@
 #!/bin/sh
 set -e
 
-if [ ! -f "/var/www/html/wp-config.php" ]; then
-
+if [ ! -f "/var/www/html/wp-load.php" ]; then
     wp core download --allow-root --path=/var/www/html
+fi
 
+if [ ! -f "/var/www/html/wp-config.php" ]; then
     wp config create \
         --allow-root \
         --path=/var/www/html \
         --dbname="${MYSQL_DATABASE}" \
         --dbuser="${MYSQL_USER}" \
         --dbpass="${MYSQL_PASSWORD}" \
-        --dbhost=mariadb
+        --dbhost=mariadb \
+        --skip-check
+fi
 
-    i=0
-    while ! wp db check --allow-root --path=/var/www/html > /dev/null 2>&1; do
-        i=$((i + 1))
-        if [ "$i" -ge 30 ]; then
-            echo "mariadb not reachable after 30 tries" >&2
-            exit 1
-        fi
-        sleep 2
-    done
+i=0
+while ! wp db check --allow-root --path=/var/www/html > /dev/null 2>&1; do
+    i=$((i + 1))
+    if [ "$i" -ge 30 ]; then
+        echo "mariadb not reachable after 30 tries" >&2
+        exit 1
+    fi
+    sleep 2
+done
+
+if ! wp core is-installed --allow-root --path=/var/www/html > /dev/null 2>&1; then
 
     wp core install \
         --allow-root \
@@ -39,8 +44,8 @@ if [ ! -f "/var/www/html/wp-config.php" ]; then
         --user_pass="${WP_USER_PASSWORD}" \
         --role=author
 
-    wp plugin install redis-cache --allow-root --path=/var/www/html --activate
-    wp redis enable --allow-root --path=/var/www/html
+    wp plugin install redis-cache --allow-root --path=/var/www/html --activate || true
+    wp redis enable --allow-root --path=/var/www/html || true
 
 fi
 

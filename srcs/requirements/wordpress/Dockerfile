@@ -28,6 +28,8 @@ RUN apk update && apk add --no-cache \
 RUN curl -sS https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -o /usr/local/bin/wp && \
     chmod +x /usr/local/bin/wp
 
+RUN echo "memory_limit = 512M" > /etc/php83/conf.d/zz-wp-cli.ini
+
 COPY conf/www.conf /etc/php83/php-fpm.d/www.conf
 COPY tools/setup_wp.sh /usr/local/bin/setup_wp.sh
 
