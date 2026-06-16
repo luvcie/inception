@@ -109,6 +109,8 @@ volumes:
       type: none
       o: bind
       device: /home/lucpardo/data/wordpress
+  portainer-data:
+    driver: local
 
 networks:
   inception:
