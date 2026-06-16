@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&display=swap');
+
+/* Global Styles */
+body {
+    font-family: 'Fira Code', 'Arial', sans-serif; /* Set Fira Code as the primary font */
+    background-color: #f5f5dc; /* Light beige background */
+    color: #4d4d4d; /* Dark gray text */
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #f9e4c0; /* Soft beige navbar */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #4d4d4d !important; /* Dark gray */
+}
+
+.nav-link {
+    color: #4d4d4d !important; /* Dark gray */
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+    color: #d0a95f !important; /* Warm gold on hover */
+}
+
+.nav-link.active {
+    color: #b19a6d !important; /* Active link color */
+    font-weight: bold;
+}
+
+/* Section Layout */
+.container {
+    max-width: 960px;
+}
+
+.content-section {
+    background-color: #ffffff; /* White for content area */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Headings */
+h1, h2 {
+    color: #6b4f3d; /* Dark brown for headings */
+}
+
+/* About Section */
+#about img {
+    border-radius: 50%;
+    margin-bottom: 20px;
+    max-width: 100%;
+}
+
+/* List Styling */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding-bottom: 10px;
+}
+
+/* Contact List */
+.list-group-item {
+    background-color: #f9f9f9; /* Light gray for list items */
+    border: none;
+    font-size: 1.1rem;
+    padding: 15px;
+}
+
+.list-group-item strong {
+    color: #6b4f3d; /* Dark brown for strong text */
+}
+
+/* Footer Styles */
+footer {
+    background-color: #d0a95f; /* Warm gold footer */
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #f5f5dc; /* Light beige on hover */
+}
