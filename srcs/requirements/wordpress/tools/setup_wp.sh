@@ -16,6 +16,8 @@ if [ ! -f "/var/www/html/wp-config.php" ]; then
         --skip-check
 fi
 
+wp config set WP_REDIS_HOST redis --allow-root --path=/var/www/html
+
 i=0
 while ! wp db check --allow-root --path=/var/www/html > /dev/null 2>&1; do
     i=$((i + 1))
@@ -45,9 +47,10 @@ if ! wp core is-installed --allow-root --path=/var/www/html > /dev/null 2>&1; th
         --role=author
 
     wp plugin install redis-cache --allow-root --path=/var/www/html --activate || true
-    wp redis enable --allow-root --path=/var/www/html || true
 
 fi
+
+wp redis enable --allow-root --path=/var/www/html || true
 
 chown -R nobody:nobody /var/www/html
 
