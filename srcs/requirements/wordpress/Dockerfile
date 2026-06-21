@@ -27,6 +27,7 @@ RUN apk update && apk add --no-cache \
 
 RUN curl -sS https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -o /usr/local/bin/wp && \
     chmod +x /usr/local/bin/wp
+RUN ln -sf /usr/bin/php83 /usr/bin/php
 
 RUN echo "memory_limit = 512M" > /etc/php83/conf.d/zz-wp-cli.ini
 
